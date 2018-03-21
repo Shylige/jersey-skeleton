@@ -25,7 +25,7 @@ public interface ImageDao {
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	List<Image> getAllImage(@Bind("idClient") int idClient);
 
-	@SqlUpdate("insert into images (id,idClient,url) values (:id,:idClient,:url)")
+	@SqlUpdate("insert into images (idClient,url) values (:idClient,:url)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Image image);
 
