@@ -29,11 +29,11 @@ public class Image {
 		this.id = id;
 	}
 
-	public int getIdUser() {
+	public int getIdClient() {
 		return idClient;
 	}
 
-	public void setIdUser(int idClient) {
+	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
 	
