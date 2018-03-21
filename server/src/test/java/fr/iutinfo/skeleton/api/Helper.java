@@ -17,6 +17,7 @@ public class Helper {
         dao.dropUserTable();
         dao.createUserTable();
     }
+    // test
 
     static User createUserWithName(String name) {
         User user = new User(0, null, name, null, null, null, null);
