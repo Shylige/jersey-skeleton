@@ -54,20 +54,20 @@ public class UserResourceTest extends JerseyTest {
     public void read_user_should_read_user_with_same_salt() {
         String expectedSalt = "graindesel";
         createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
-        User user = dao.findByName("Mark Shuttleworth");
+        User user = dao.findByLogin("Mark Shuttleworth");
         assertEquals(expectedSalt, user.getSalt());
     }
 
     @Test
     public void read_user_should_return_hashed_password() throws NoSuchAlgorithmException {
         createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
-        User user = dao.findByName("Loïc Dachary");
+        User user = dao.findByLogin("Loïc Dachary");
         assertEquals("dfeb21109fe5eab1b1db7369844921c44b87b44669b0742f3f73bd166b474779", user.getPasswdHash());
     }
 
     @Test
     public void create_should_return_the_user_with_valid_id() {
-        User user = new User(0, "thomas");
+        User user = new User(0, "thomas", null, null, null, null, null);
         Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
         String json = target(PATH).request().post(userEntity).readEntity(String.class);
         assertEquals("{\"id\":1,\"name\":\"thomas\"", json.substring(0, 23));

@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
-    private static User anonymous = new User(-1, "Anonymous", "anonym", "anonym", "anonym", "anonym");
+    private static User anonymous = new User(-1, "Anonymous", "anonym", "anonym","anonym", "anonym", "anonym");
     private String nom;
     private String prenom;
     private String login;
@@ -30,13 +30,14 @@ public class User implements Principal {
         this.nom = name;
     }
 */
-    public User(int id, String login, String nom, String prenom, String adresse, String tel) {
+    public User(int id, String login, String nom, String prenom, String email, String adresse, String tel) {
         this.id = id;
         this.nom = nom;
         this.login = login;
         this.adresse=adresse;
         this.prenom=prenom;
         this.tel=tel;
+        this.email = email;
     }
 
     public User() {

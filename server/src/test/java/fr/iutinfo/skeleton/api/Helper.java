@@ -19,23 +19,28 @@ public class Helper {
     }
 
     static User createUserWithName(String name) {
-        User user = new User(0, name);
+        User user = new User(0, null, name, null, null, null, null);
+        return createUser(user);
+    }
+    
+    static User createUserWithFirstName(String name, String firstName) {
+        User user = new User(0, null, name, firstName, null, null, null);
         return createUser(user);
     }
 
-    static User createUserWithAlias(String name, String alias) {
-        User user = new User(0, name, alias);
+    static User createUserWithLogin(String name, String login) {
+        User user = new User(0, login, name, null, null, null, null);
         return createUser(user);
     }
 
     static User createUserWithEmail(String name, String email) {
-        User user = new User(0, name);
+        User user = new User(0, null, name, null, email, null, null);
         user.setEmail(email);
         return createUser(user);
     }
 
     public static User createUserWithPassword(String name, String passwd, String salt) {
-        User user = new User(0, name);
+        User user = new User(0, null, name, null, null, null, null);
         user.setSalt(salt);
         user.setPassword(passwd);
         logger.debug("createUserWithPassword Hash : " + user.getPasswdHash());
@@ -49,8 +54,8 @@ public class Helper {
     }
 
 
-    private static User createFullUSer(String name, String alias, String email, String paswword) {
-        User user = new User(0, name);
+    private static User createFullUSer(String name, String firstName, String alias, String email, String adresse, String tel, String paswword) {
+        User user = new User(0, null, name, firstName, null, adresse, tel);
         user.setAlias(alias);
         user.setEmail(email);
         user.setPassword(paswword);
@@ -60,18 +65,18 @@ public class Helper {
     }
 
     static void createRms() {
-        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
+        createFullUSer("Richard", "Stallman", "RMS", "rms@fsf.org","Rue Didier Deschamps","0607080910", "gnuPaswword");
     }
 
     static User createRob() {
-        return createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+        return createFullUSer("Robert", "Capillo", "rob", "rob@fsf.org", "Rue Laurent Blanc", "0612345678", "paswword");
     }
 
     static User createLinus() {
-        return createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
+        return createFullUSer("Linus", "Torvalds", "linus", "linus@linux.org", "Rue Alfred fred", "0611821800", "paswword");
     }
 
     static User createIan() {
-        return createFullUSer("Ian Murdock", "debian", "ian@debian.org", "mot de passe");
+        return createFullUSer("Ian", "Murdock", "debian", "ian@debian.org", "Rue de HellKitchen", "0752258964", "mot de passe");
     }
 }
