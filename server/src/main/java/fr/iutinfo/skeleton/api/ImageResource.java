@@ -27,16 +27,15 @@ public class ImageResource {
 			dao.insert(new Image(1,1,"http://www.sudinfo.be/sites/default/files/dpistyles_v2/sp_4_3_inline/2017/11/09/node_20297/66382/public/2017/11/09/B9713764736Z.1_20171109161639_000+GH2A4J3V2.1-0.jpg?itok=gd6BLDgx"));
 		}
 	}
-	/*
+	
     @POST
     public Image createImage(Image img) {
         Image image = new Image();
-        image.initFromDto(dto);
         int id = dao.insert(image);
-        dto.setId(id);
-        return dto;
+        image.setId(id);
+        return image;
     }
-	 */
+	 
 	@GET
 	@Path("/{id}")
 	public Image getImage(@PathParam("id") int id) {

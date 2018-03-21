@@ -11,8 +11,11 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
 import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 public interface ImageDao {
-	@SqlUpdate("create table images (id int, idClient int, url text)")
+	@SqlUpdate("create table images (id integer primary key autoincrement, idClient int, url text)")
 	void createImageTable();
+	
+	@SqlUpdate("drop table if exists images")
+    void dropImageTable();
 
 	@SqlQuery("select * from images where id = :id")
 	@RegisterMapperFactory(BeanMapperFactory.class)
