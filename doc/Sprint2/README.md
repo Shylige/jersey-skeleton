@@ -22,4 +22,4 @@
 
 ## Attentes du prochain sprint
 
-    	L'agencement des différentes parties du projet agile doivent commencer à s'assembler pour former un début de démo fonctionnel
+    L'agencement des différentes parties du projet agile doivent commencer à s'assembler pour former un début de démo fonctionnel
