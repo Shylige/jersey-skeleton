@@ -2,16 +2,16 @@ package fr.iutinfo.skeleton.api;
 
 public class Image {
 	private int id;
-	private int idUser;
+	private int idClient;
 	private String url;
 	
 	public Image() {
     }
 	
-	public Image(int id, int idUser, String url) {
+	public Image(int id, int idClient, String url) {
 		this.id = id;
 		this.url = url;
-		this.idUser=idUser;
+		this.idClient=idClient;
 	}
 	
 	public String getUrl() {
@@ -29,12 +29,12 @@ public class Image {
 		this.id = id;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public int getIdClient() {
+		return idClient;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdClient(int idClient) {
+		this.idClient = idClient;
 	}
 	
 	
