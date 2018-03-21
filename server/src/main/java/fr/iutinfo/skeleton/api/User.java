@@ -12,31 +12,77 @@ import java.security.SecureRandom;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
-    private static User anonymous = new User(-1, "Anonymous", "anonym");
-    private String name;
-    private String alias;
+    private static User anonymous = new User(-1, "Anonymous", "anonym", "anonym", "anonym", "anonym");
+    private String nom;
+    private String prenom;
+    private String login;
     private int id = 0;
     private String email;
     private String password;
     private String passwdHash;
     private String salt;
     private String search;
-
+    private String tel;
+    private String adresse;
+/*
     public User(int id, String name) {
         this.id = id;
-        this.name = name;
+        this.nom = name;
     }
-
-    public User(int id, String name, String alias) {
+*/
+    public User(int id, String login, String nom, String prenom, String adresse, String tel) {
         this.id = id;
-        this.name = name;
-        this.alias = alias;
+        this.nom = nom;
+        this.login = login;
+        this.adresse=adresse;
+        this.prenom=prenom;
+        this.tel=tel;
     }
 
     public User() {
     }
 
-    public static User getAnonymousUser() {
+    public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public static User getAnonymousUser() {
         return anonymous;
     }
 
@@ -54,14 +100,6 @@ public class User implements Principal {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
@@ -100,20 +138,20 @@ public class User implements Principal {
         if (getClass() != arg.getClass())
             return false;
         User user = (User) arg;
-        return name.equals(user.name) && alias.equals(user.alias) && email.equals(user.email) && passwdHash.equals(user.getPasswdHash()) && salt.equals((user.getSalt()));
+        return nom.equals(user.nom) && login.equals(user.login) && email.equals(user.email) && passwdHash.equals(user.getPasswdHash()) && salt.equals((user.getSalt()));
     }
 
     @Override
     public String toString() {
-        return id + ": " + alias + ", " + name + " <" + email + ">";
+        return id + ": " + login + ", " + nom + " <" + email + ">";
     }
 
     public String getAlias() {
-        return alias;
+        return login;
     }
 
     public void setAlias(String alias) {
-        this.alias = alias;
+        this.login = alias;
     }
 
     public String getSalt() {
@@ -149,7 +187,7 @@ public class User implements Principal {
     }
 
     public String getSearch() {
-        search = name + " " + alias + " " + email;
+        search = nom + " " + login + " " + email;
         return search;
     }
 
@@ -161,7 +199,7 @@ public class User implements Principal {
         this.setAlias(dto.getAlias());
         this.setEmail(dto.getEmail());
         this.setId(dto.getId());
-        this.setName(dto.getName());
+        this.setNom(dto.getName());
         this.setPassword(dto.getPassword());
     }
 
@@ -174,4 +212,9 @@ public class User implements Principal {
         dto.setPassword(this.getPassword());
         return dto;
     }
+
+	@Override
+	public String getName() {
+		return getNom();
+	}
 }
