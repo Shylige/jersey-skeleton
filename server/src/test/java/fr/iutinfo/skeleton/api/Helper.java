@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+/*package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
@@ -10,12 +10,17 @@ import java.util.List;
 public class Helper {
     private final static Logger logger = LoggerFactory.getLogger(Helper.class);
     private static final UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    private static final ImageDao daoImg = BDDFactory.getDbi().open(ImageDao.class);
     static GenericType<List<UserDto>> listUserResponseType = new GenericType<List<UserDto>>() {
     };
 
     public static void initDb() {
+    	System.out.println("TEST INITDB");
         dao.dropUserTable();
         dao.createUserTable();
+        daoImg.dropImageTable();
+        daoImg.createImageTable();
+        System.out.println("TEST FIN INITDB");
     }
     // test
 
@@ -81,3 +86,4 @@ public class Helper {
         return createFullUSer("Ian", "Murdock", "debian", "ian@debian.org", "Rue de HellKitchen", "0752258964", "mot de passe");
     }
 }
+*/

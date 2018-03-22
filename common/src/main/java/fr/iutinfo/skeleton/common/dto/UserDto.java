@@ -15,6 +15,10 @@ public class UserDto {
     private String prenom;
     private String password;
     private String email;
+    
+    public UserDto() {
+    	
+    }
 
     public String getEmail() {
         return email;
@@ -38,8 +42,6 @@ public class UserDto {
     public void setId(int id) {
         this.id = id;
     }
-
-
 
     public String getPassword() {
         return this.password;
