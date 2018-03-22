@@ -47,11 +47,11 @@
                 <button type="button" id="loginb" class="btn btn-primary">Se connecter</button>
             </div>
 
-            <div id ="imagepicker" >
-            <label>Image File:</label><br/>
-            <input type="file" id="imageLoader" name="imageLoader"/>
-            <canvas id="imageCanvas"></canvas>
-            </div>
+            <div id ="prevImg">
+            <form id="form1" runat="server">
+              <input type='file' id="imgInp" />
+              <img id="blah" src="#" alt="your image" />
+            </form>
 
 
 
@@ -67,12 +67,17 @@
     </div>
     <script type="text/javascript">
 			$(document).ready(function() {
-                var imageLoader = document.getElementById('imageLoader');
+
+
+               /* var imageLoader = document.getElementById('imageLoader');
                 imageLoader.addEventListener('change', handleImage, false);
                 var canvas = document.getElementById('imageCanvas');
                 var ctx = canvas.getContext('2d');
-                document.getElementById("imagepicker").style.display = "none";
+                document.getElementById("imagepicker").style.display = "none";*/
+
+
                 var divlog = document.getElementById("divlog");
+                document.getElementById("prevImg").style.display = "none";
                 divlog.style.display = "none";
 				$("#get").click(function () {
 				    getUser($('#user').val(), $('#alias').val())
@@ -103,12 +108,12 @@
                         document.getElementById("divinsc").style.display = "none";
                         divlog.style.display = "block";
 				    }else{
-                        var mec = document.getElementById("email".value);
                         login();
                         divlog.style.display = "none";
                         document.getElementById("divinsc").style.display = "none";
                         document.getElementById("btnmenu").style.display = "none";
-                        document.getElementById("imagepicker").style.display = "block";
+                         document.getElementById("prevImg").style.display = "block";
+
                         ;
                     }
                 });
@@ -116,7 +121,23 @@
                     document.getElementsByName("body").empty();
 				    profile()
 				    });
-			});
+			 });
+
+                function readURL(input) {
+                  if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                      $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                  }
+                }
+
+                $("#imgInp").change(function() {
+                  readURL(this);
+                });
 
     </script>
 </body>
