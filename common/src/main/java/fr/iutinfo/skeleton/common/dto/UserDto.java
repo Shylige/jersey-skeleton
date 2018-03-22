@@ -3,8 +3,6 @@ package fr.iutinfo.skeleton.common.dto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.Principal;
-
 public class UserDto {
     final static Logger logger = LoggerFactory.getLogger(UserDto.class);
     private String nom;

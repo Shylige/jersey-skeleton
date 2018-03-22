@@ -1,7 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.common.dto.ImageDto;
-import fr.iutinfo.skeleton.common.dto.UserDto;
 
 public class Image {
 	private int id;
