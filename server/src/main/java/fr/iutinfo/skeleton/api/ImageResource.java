@@ -28,10 +28,10 @@ public class ImageResource {
 	
     @POST
     public Image createImage(Image img) {
-        Image image = new Image();
-        int id = dao.insert(image);
-        image.setId(id);
-        return image;
+        //Image image = new Image();
+        int id = dao.insert(img);
+        img.setId(id);
+        return img;
     }
 	 
 	@GET

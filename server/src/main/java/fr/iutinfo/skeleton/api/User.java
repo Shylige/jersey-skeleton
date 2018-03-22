@@ -197,20 +197,28 @@ public class User implements Principal {
     }
 
     public void initFromDto(UserDto dto) {
-        this.setAlias(dto.getAlias());
+    	System.out.println("\n\ninitFromDto\n\n");
+    	this.setLogin(dto.getLogin());
         this.setEmail(dto.getEmail());
         this.setId(dto.getId());
-        this.setNom(dto.getName());
+        this.setNom(dto.getNom());
         this.setPassword(dto.getPassword());
+        this.setAdresse(dto.getAdresse());
+        this.setPrenom(dto.getPrenom());
+        this.setTel(dto.getTel());
     }
 
     public UserDto convertToDto() {
+    	System.out.println("\n\nConvertToDto\n\n");
         UserDto dto = new UserDto();
-        dto.setAlias(this.getAlias());
+        dto.setLogin(this.getLogin());
         dto.setEmail(this.getEmail());
         dto.setId(this.getId());
-        dto.setName(this.getName());
+        dto.setNom(this.getNom());
         dto.setPassword(this.getPassword());
+        dto.setAdresse(this.getAdresse());
+        dto.setTel(this.getTel());
+        dto.setPrenom(this.getPrenom());
         return dto;
     }
 

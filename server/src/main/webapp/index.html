@@ -25,7 +25,7 @@
 
 <div class="container">
     <div class="row">
-            <div class="form-group">
+            <div id="divinsc" class="form-group">
                 <h1>S'inscrire</h1>
                 <input type="text" name="userdb" id="user" placeholder="Nom ?" class="form-control"/>
                 <input type="text" name="user" id="alias" placeholder="Surnom ?" class="form-control"/>
@@ -34,10 +34,26 @@
                 <input type="text" name="tel" id="tel" placeholder="Tel ?" class="form-control"/>
                 <input type="password" name="user" id="passwd" placeholder="Mot de passe ?" class="form-control"/>
             </div>
-            <div class="btn-group align-items-center" role="group">
+
+            <div id="divlog" class="form-group">
+                <h1>Se connecter</h1>
+                <input type="text" name="email" id="email" placeholder="Email ?" class="form-control"/>
+                <input type="password" name="user" id="passwd" placeholder="Mot de passe ?" class="form-control"/>
+            </div>
+
+            <div id="btnmenu" class="btn-group align-items-center" role="group">
                 <button type="button" id="post" class="btn btn-warning">S'inscrire</button>
                 <button type="button" id="login" class="btn btn-primary">Se connecter</button>
             </div>
+
+            <div id ="imagepicker" >
+            <label>Image File:</label><br/>
+            <input type="file" id="imageLoader" name="imageLoader"/>
+            <canvas id="imageCanvas"></canvas>
+            </div>
+
+
+
 </div>
     <div class="row" style="margin-top: 20px;">
     </div>
@@ -50,21 +66,51 @@
     </div>
     <script type="text/javascript">
 			$(document).ready(function() {
+
+
+                var imageLoader = document.getElementById('imageLoader');
+                imageLoader.addEventListener('change', handleImage, false);
+                var canvas = document.getElementById('imageCanvas');
+                var ctx = canvas.getContext('2d');
+                document.getElementById("imagepicker").style.display = "none";
+                var divlog = document.getElementById("divlog");
+                divlog.style.display = "none";
 				$("#get").click(function () {
 				    getUser($('#user').val(), $('#alias').val())
 				    });
 				$("#post").click(function () {
-                    postUser(
-                        $('#user').val(),
-                        $('#alias').val(),
-                        $('#email').val(),
-                        $('#passwd').val())});
+                    if(document.getElementById("divinsc").style.display === "none"){
+                        document.getElementById("divinsc").style.display = "block";
+                        divlog.style.display = "none";
+                    }
+                    else{
+                        postUser(
+                            $('#user').val(),
+                            $('#alias').val(),
+                            $('#email').val(),
+                            $('#adresse').val(),
+                            $('#passwd').val())
+                    }
+                });
+
+
 				$("#list").click(function () {
 			         document.body.innerHTML = "";
 				    });
 				$("#login").click(function () {
-                    document.body.innerHTML ="Vous êtes connecté";
-				    });
+                    if(divlog.style.display==="none"){
+                        document.getElementById("divinsc").style.display = "none";
+                        divlog.style.display = "block";
+				    }else{
+                        var mec = document.getElementById("email".value);
+                        login();
+                        divlog.style.display = "none";
+                        document.getElementById("divinsc").style.display = "none";
+                        document.getElementById("btnmenu").style.display = "none";
+                        document.getElementById("imagepicker").style.display = "block";
+                        ;
+                    }
+                });
 				$("#profile").click(function () {
                     document.getElementsByName("body").empty();
 				    profile()

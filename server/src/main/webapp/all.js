@@ -41,11 +41,11 @@ function profile() {
      }
  }
 
-function postUser(name, alias, email, pwd) {
-    postUserGeneric(name, alias, email, pwd, 'v1/user/')
+function postUser(name, alias, email, adresse, pwd) {
+    postUserGeneric(name, alias, email,adresse, pwd, 'v1/user/')
 }
 
-function postUserGeneric(name, alias, email, pwd, url) {
+function postUserGeneric(name, alias, email, adresse, pwd, url) {
 	console.log("postUserGeneric " + url)
 	$.ajax({
 		type : 'POST',
@@ -57,7 +57,8 @@ function postUserGeneric(name, alias, email, pwd, url) {
 			"alias" : alias,
 			"email" : email,
 			"password" : pwd,
-			"id" : 0
+			"id" : 0,
+			"adresse" : adresse
 		}),
 		success : function(data, textStatus, jqXHR) {
 			afficheUser(data);
@@ -101,4 +102,19 @@ function userStringify(user) {
 }
 
 function pageLogin(){
+}
+
+
+function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img,0,0);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);     
 }
