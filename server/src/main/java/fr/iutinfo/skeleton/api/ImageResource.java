@@ -24,7 +24,6 @@ public class ImageResource {
 	private static ImageDao dao = getDbi().open(ImageDao.class);
 
 	public ImageResource() throws SQLException {
-		System.out.println("\n\n\nnew IMAGE\n\n\n");
 		if (!tableExist("images")) {
 			logger.debug("Crate table images");
 			dao.createImageTable();
