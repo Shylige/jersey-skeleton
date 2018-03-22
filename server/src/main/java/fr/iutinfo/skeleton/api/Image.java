@@ -1,5 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
+import fr.iutinfo.skeleton.common.dto.ImageDto;
+import fr.iutinfo.skeleton.common.dto.UserDto;
+
 public class Image {
 	private int id;
 	private int idClient;
@@ -36,6 +39,21 @@ public class Image {
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
+	
+	public void initFromDto(ImageDto dto) {
+		this.setId(dto.getId());
+		this.setIdClient(dto.getIdClient());
+		this.setUrl(dto.getUrl());
+    }
+
+    public ImageDto convertToDto() {
+        ImageDto dto = new ImageDto();
+        dto.setId(this.getId());
+        dto.setIdClient(this.getIdClient());
+        dto.setUrl(this.getUrl());
+        
+        return dto;
+    }
 	
 	
 }

@@ -6,6 +6,8 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 public interface UserDao {
     @SqlUpdate("create table users (id integer primary key autoincrement, nom varchar(100), login varchar(100), email varchar(100), passwdHash varchar(64), salt varchar(64), search varchar(1024), prenom text, adresse text, tel char(10))")
     void createUserTable();

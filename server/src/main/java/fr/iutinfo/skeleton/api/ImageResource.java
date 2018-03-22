@@ -3,10 +3,13 @@ package fr.iutinfo.skeleton.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.iutinfo.skeleton.common.dto.ImageDto;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
 import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
@@ -27,29 +30,30 @@ public class ImageResource {
 	}
 	
     @POST
-    public Image createImage(Image img) {
-        //Image image = new Image();
-        int id = dao.insert(img);
+    public ImageDto createImage(ImageDto img) {
+        Image image = new Image();
+        image.initFromDto(img);
+        int id = dao.insert(image);
         img.setId(id);
         return img;
     }
 	 
 	@GET
 	@Path("/{id}")
-	public Image getImage(@PathParam("id") int id) {
+	public ImageDto getImage(@PathParam("id") int id) {
 		Image image = dao.findById(id);
 		if (image == null) {
 			throw new WebApplicationException(404);
 		}
-		return image;
+		return image.convertToDto();
 	}
 
 	@GET
-	public List<Image> getAllImages(@QueryParam("idClient") int idClient) {
+	public List<ImageDto> getAllImages(@QueryParam("idClient") int idClient) {
 		List<Image> res;
 		logger.debug("Search all Image with query: " + idClient);
 		res= dao.getAllImage(idClient);
-		return res;
+		return res.stream().map(Image::convertToDto).collect(Collectors.toList());
 	}
 
 	@DELETE
