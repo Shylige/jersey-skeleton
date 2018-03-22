@@ -21,8 +21,6 @@ public class UserResource {
     private static UserDao dao = getDbi().open(UserDao.class);
 
     public UserResource() throws SQLException {
-    	System.out.println("\n\ntest\n\n");
-    	//dao.dropUserTable();
         if (!tableExist("users")) {
             logger.debug("Crate table users");
             dao.createUserTable();
