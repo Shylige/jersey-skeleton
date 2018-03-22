@@ -24,6 +24,10 @@ public interface ImageDao {
 	@SqlQuery("select * from images where idClient = :idClient")
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	List<Image> getAllImage(@Bind("idClient") int idClient);
+	
+	@SqlQuery("select * from images order by id")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    List<Image> all();
 
 	@SqlUpdate("insert into images (idClient,url) values (:idClient,:url)")
 	@GetGeneratedKeys

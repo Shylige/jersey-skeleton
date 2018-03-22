@@ -4,6 +4,7 @@ import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
@@ -49,6 +50,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed({"admin"})
     public List<UserDto> getAllUsers(@QueryParam("q") String query) {
         List<User> users;
         if (query == null) {
@@ -62,6 +64,7 @@ public class UserResource {
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed({"admin"})
     public void deleteUser(@PathParam("id") int id) {
         dao.delete(id);
     }
