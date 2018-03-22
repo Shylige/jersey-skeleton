@@ -42,10 +42,10 @@ function profile() {
  }
 
 function postUser(nom, prenom, email, adresse, tel,login, pwd) {
-    postUserGeneric(name, alias, email,adresse,tel, pwd, 'v1/user/')
+    postUserGeneric(nom, prenom, email,adresse,tel,login, pwd, 'v1/user/')
 }
 
-function postUserGeneric(nom, prenom, email, adresse, ,tel ,login, pwd, url) {
+function postUserGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 	console.log("postUserGeneric " + url)
 	$.ajax({
 		type : 'POST',
@@ -60,7 +60,7 @@ function postUserGeneric(nom, prenom, email, adresse, ,tel ,login, pwd, url) {
 			"id" : 0,
 			"adresse" : adresse,
 			"prenom" : prenom,
-			"tel" : tel
+			"tel" : tel 
 		}),
 		success : function(data, textStatus, jqXHR) {
 			afficheUser(data);
