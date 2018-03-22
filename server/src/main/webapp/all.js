@@ -41,11 +41,11 @@ function profile() {
      }
  }
 
-function postUser(name, alias, email, adresse, pwd) {
-    postUserGeneric(name, alias, email,adresse, pwd, 'v1/user/')
+function postUser(nom, prenom, email, adresse, tel,login, pwd) {
+    postUserGeneric(nom, prenom, email,adresse,tel,login, pwd, 'v1/user/')
 }
 
-function postUserGeneric(name, alias, email, adresse, pwd, url) {
+function postUserGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 	console.log("postUserGeneric " + url)
 	$.ajax({
 		type : 'POST',
@@ -53,12 +53,14 @@ function postUserGeneric(name, alias, email, adresse, pwd, url) {
 		url : url,
 		dataType : "json",
 		data : JSON.stringify({
-			"name" : name,
-			"alias" : alias,
+			"nom" : nom,
+			"login" : login,
 			"email" : email,
 			"password" : pwd,
 			"id" : 0,
-			"adresse" : adresse
+			"adresse" : adresse,
+			"prenom" : prenom,
+			"tel" : tel 
 		}),
 		success : function(data, textStatus, jqXHR) {
 			afficheUser(data);

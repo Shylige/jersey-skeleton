@@ -4,6 +4,7 @@ import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
@@ -21,8 +22,6 @@ public class UserResource {
     private static UserDao dao = getDbi().open(UserDao.class);
 
     public UserResource() throws SQLException {
-    	System.out.println("\n\ntest\n\n");
-    	//dao.dropUserTable();
         if (!tableExist("users")) {
             logger.debug("Crate table users");
             dao.createUserTable();
@@ -51,6 +50,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed({"admin"})
     public List<UserDto> getAllUsers(@QueryParam("q") String query) {
         List<User> users;
         if (query == null) {
@@ -64,6 +64,7 @@ public class UserResource {
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed({"admin"})
     public void deleteUser(@PathParam("id") int id) {
         dao.delete(id);
     }
