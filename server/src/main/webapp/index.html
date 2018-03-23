@@ -57,11 +57,16 @@
             <div id = "creaProduit" class="form-group">
                 <input type="text" name="userdb" id="nomprod" placeholder="Nom du produit ?" class="form-control"/>
                 <input type="text" name="user" id="descriptionprod" placeholder="Description du produit ?" class="form-control"/>
-                <input type="text" name="email" id="emailprod" placeholder="Prix ?" class="form-control"/>
+                <input type="text" name="email" id="prixprod" placeholder="Prix ?" class="form-control"/>
 
             </div>
             <div id="btnmenu2" class="btn-group align-items-center" role="group">
-                <button type="button" id="post" class="btn btn-warning">Creer</button>
+                <button type="button" id="creerProduit" class="btn btn-warning">Creer</button>
+            </div>
+
+            <div id="btnmenu3" class="btn-group align-items-center" role="group">
+                <button type="button" id="listproduits" class="btn btn-warning">Afficher liste des produits</button>
+                <div id= "resrequete"></div>
             </div>
     </div>
 </div>
@@ -108,7 +113,12 @@
                             $('#login').val())
                     }
                 });
-
+                $("#creerProduit").click(function(){
+                    postProduits(
+                            $('#nomprod').val(),
+                            $('#descriptionprod').val(),
+                            $('#prix').val())
+                });
 
 				$("#list").click(function () {
 			         document.body.innerHTML = "";
@@ -133,7 +143,14 @@
                     document.getElementsByName("body").empty();
 				    profile()
 				    });
-			 });
+			     });
+
+                $("#listproduits").click(function(){
+                    document.getElementById("divinsc").style.display = "none";
+                    document.getElementById("btnmenu").style.display = "none";
+                    produits();
+
+                });
 
                 function readURL(input) {
                   if (input.files && input.files[0]) {

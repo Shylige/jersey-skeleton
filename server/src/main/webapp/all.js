@@ -127,7 +127,13 @@ function pageProduit(){
 }
 
 function produits() {
-	getWithAuthorizationHeader("v1/produit", function (data) {afficheListProduit(data);});
+	listProduitsGeneric("/v1/produit");
+}
+
+function listProduitsGeneric(url) {
+	$.getJSON(url, function(data) {
+		afficheListProduit(data)
+	});
 }
 
 function afficheListProduit(data) {
@@ -146,4 +152,36 @@ function afficheListProduit(data) {
 
 function produitsStringify(produits) {
     return produits.id + ". " + produits.nom + " &lt;" + produits.prix;
+}
+
+function postProduits(nom, description, prix) {
+    postProduitsGeneric(nom, description,prix , 'v1/produit/');
+}
+
+function afficherProduits(data) {
+	console.log(data);
+	$("#reponse").html(userStringify(data));
+}
+
+function postProduitsGeneric(nom, description, prix, url) {
+	console.log("postProduitsGeneric " + url)
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"nom": nom,
+			"description": description,
+			"prix": prix,
+			"image":"-",
+			"id":0
+		}),
+		success : function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log('postProduits error: ' + textStatus);
+		}
+	});
 }
