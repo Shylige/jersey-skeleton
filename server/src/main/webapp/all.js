@@ -100,7 +100,9 @@ function afficheListUsers(data) {
 }
 
 function userStringify(user) {
-    return user.id + ". " + user.name + " &lt;" + user.email + "&gt;" + " (" + user.alias + ")";
+    // return user.id + ". " + user.name + " &lt;" + user.email + "&gt;" + " (" + user.alias + ")";
+    return " ID : "  + user.id +  " | Nom : " + user.nom  + " | Prénom : "+user.prenom+" | Email : " + user.email + " | Tel : "+ user.tel + " | Adresse : " + user.adresse + " | Login : " + user.login;
+    // Inverser user.prenom et user.nom --> login stcoké dans prénom et inverssement.
 }
 
 function pageLogin(){
@@ -151,7 +153,7 @@ function afficheListProduit(data) {
 }
 
 function produitsStringify(produits) {
-    return produits.id + ". " + produits.nom + " &lt;" + produits.prix;
+    return produits.id + " / " + produits.nom + " / " + produits.description + " / " +produits.prix + "€";
 }
 
 function postProduits(nom, description, prix) {

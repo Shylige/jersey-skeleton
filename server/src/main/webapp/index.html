@@ -67,6 +67,8 @@
             <div id="btnmenu3" class="btn-group align-items-center" role="group">
                 <button type="button" id="listproduits" class="btn btn-warning">Afficher liste des produits</button>
                 <div id= "resrequete"></div>
+                <button type="button" id="listusers" class="btn btn-warning">Afficher liste des utilisateurs</button>
+                <div id= "resrequete"></div>
             </div>
     </div>
 </div>
@@ -93,6 +95,7 @@
                 document.getElementById("prevImg").style.display = "none";
                 document.getElementById("creaProduit").style.display = "none";
                 document.getElementById("btnmenu2").style.display = "none";
+                document.getElementById("btnmenu3").style.display = "none";
                 divlog.style.display = "none";
 				$("#get").click(function () {
 				    getUser($('#user').val(), $('#alias').val())
@@ -105,19 +108,22 @@
                     else{
                         postUser(
                             $('#nom').val(),
-                            $('#prenom').val(),
+                            $('#login').val(),
                             $('#email').val(),
-                            $('#adresse').val(),
-                            $('#tel').val(),
                             $('#passwd').val(),
-                            $('#login').val())
+                            $('#adresse').val(),
+                            $('#prenom').val(),            
+                            $('#tel').val())
+                            
                     }
                 });
                 $("#creerProduit").click(function(){
+                    var prixfixed = parseFloat($("#prixprod").val());
+                    console.log(prixfixed);
                     postProduits(
                             $('#nomprod').val(),
                             $('#descriptionprod').val(),
-                            $('#prix').val())
+                            prixfixed)
                 });
 
 				$("#list").click(function () {
@@ -135,6 +141,7 @@
                         document.getElementById("prevImg").style.display = "block";
                         document.getElementById("creaProduit").style.display = "block";
                         document.getElementById("btnmenu2").style.display = "block";
+                        document.getElementById("btnmenu3").style.display = "block";
                         
                         ;
                     }
@@ -151,6 +158,12 @@
                     produits();
 
                 });
+
+                $("#listusers").click(function(){
+                    document.getElementById("divinsc").style.display = "none";
+                    document.getElementById("btnmenu").style.display = "none";
+                    listUsers();
+                })
 
                 function readURL(input) {
                   if (input.files && input.files[0]) {
