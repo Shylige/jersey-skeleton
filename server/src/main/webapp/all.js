@@ -120,3 +120,30 @@ function handleImage(e){
     }
     reader.readAsDataURL(e.target.files[0]);     
 }
+
+function pageProduit(){
+	$('#reponse').show();
+	produits();
+}
+
+function produits() {
+	getWithAuthorizationHeader("v1/produit", function (data) {afficheListProduit(data);});
+}
+
+function afficheListProduit(data) {
+	var ul = document.createElement('ul');
+	ul.className = "list-group";
+	var index = 0;
+	for (index = 0; index < data.length; ++index) {
+	    var li = document.createElement('li');
+	    li.className = "list-group-item";
+		li.innerHTML = produitsStringify(data[index]);
+		console.log(produitsStringify(data[index]));
+		ul.appendChild(li);
+	}
+	$("#reponse").html(ul);
+}
+
+function produitsStringify(produits) {
+    return produits.id + ". " + produits.nom + " &lt;" + produits.prix;
+}
