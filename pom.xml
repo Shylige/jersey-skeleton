@@ -31,11 +31,8 @@
     </properties>
 
     <modules>
-        <module>command-line-interface</module>
         <module>common</module>
         <module>server</module>
-        <module>client-library</module>
-        <module>war</module>
     </modules>
 
     <dependencies>
