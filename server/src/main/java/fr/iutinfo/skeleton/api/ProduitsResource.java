@@ -25,8 +25,8 @@ public class ProduitsResource {
 	private static ProduitsDao dao = getDbi().open(ProduitsDao.class);
 
 	public ProduitsResource() throws SQLException {
-		if (!tableExist("images")) {
-			logger.debug("Crate table images");
+		if (!tableExist("produits")) {
+			logger.debug("Crate table produits");
 			dao.createProduitsTable();
 			dao.insert(new Produits(0,"Affiche – Portrait unique – Nu",33.00,"http://ceuxquinouslient.com/wp-content/uploads/2018/03/papou-600x849.png","Des portrait d'antan pour petits et grands.\n" + 
 					"\n" + 
