@@ -47,22 +47,30 @@
                 <button type="button" id="loginb" class="btn btn-primary">Se connecter</button>
             </div>
 
-            <div id ="prevImg">
+            <div id ="prevImg">  
+                <h1>Création d'un produit</h1>
             <form id="form1" runat="server">
               <input type='file' id="imgInp" />
-              <img id="blah" src="#" alt="your image" />
+              <img id="blah" src="#" alt="Votre image" />
             </form>
+            </div>
+            <div id = "creaProduit" class="form-group">
+                <input type="text" name="userdb" id="nomprod" placeholder="Nom du produit ?" class="form-control"/>
+                <input type="text" name="user" id="descriptionprod" placeholder="Description du produit ?" class="form-control"/>
+                <input type="text" name="email" id="emailprod" placeholder="Prix ?" class="form-control"/>
 
-
-
+            </div>
+            <div id="btnmenu2" class="btn-group align-items-center" role="group">
+                <button type="button" id="post" class="btn btn-warning">Creer</button>
+            </div>
+    </div>
 </div>
     <div class="row" style="margin-top: 20px;">
     </div>
     <div class="row" style="margin-top: 1em;">
         <div class="panel panel-info">
             <div class="panel-heading">Réponse</div>
-            <div class="panel-body" id="reponse">
-            </div>
+            <div class="panel-body" id="reponse"></div>    
         </div>
     </div>
     <script type="text/javascript">
@@ -78,6 +86,8 @@
 
                 var divlog = document.getElementById("divlog");
                 document.getElementById("prevImg").style.display = "none";
+                document.getElementById("creaProduit").style.display = "none";
+                document.getElementById("btnmenu2").style.display = "none";
                 divlog.style.display = "none";
 				$("#get").click(function () {
 				    getUser($('#user').val(), $('#alias').val())
@@ -112,8 +122,10 @@
                         divlog.style.display = "none";
                         document.getElementById("divinsc").style.display = "none";
                         document.getElementById("btnmenu").style.display = "none";
-                         document.getElementById("prevImg").style.display = "block";
-
+                        document.getElementById("prevImg").style.display = "block";
+                        document.getElementById("creaProduit").style.display = "block";
+                        document.getElementById("btnmenu2").style.display = "block";
+                        
                         ;
                     }
                 });
