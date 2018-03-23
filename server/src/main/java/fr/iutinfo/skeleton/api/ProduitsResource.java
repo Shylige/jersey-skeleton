@@ -74,9 +74,11 @@ public class ProduitsResource {
 	@GET
 	@Path("/{id}")
 	public ProduitsDto getProduits(@QueryParam("id") int id) {
-		logger.debug("SearchProduits with query: " + id);
-		Produits p=dao.findById(id);
-		if(p==null) throw new WebApplicationException(404);
+		Produits p = dao.findById(id);
+		logger.debug("Search Produits with query: " + id);
+		if(p==null) {
+			throw new WebApplicationException(404);
+		}
 		return p.convertToDto();
 	}
 
@@ -91,7 +93,7 @@ public class ProduitsResource {
 
 	@DELETE
 	@Path("/{id}")
-	public void deleteImage(@PathParam("id") int id) {
+	public void deleteProduit(@PathParam("id") int id) {
 		dao.delete(id);
 	}
 
