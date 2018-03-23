@@ -32,41 +32,35 @@ public class ProduitsResource {
 					"\n" + 
 					"Silhouettes fabriquées à partir de vos photos et imprimées en haute qualité sur des feuilles Canson A4 (320 gr.) ou A3 (210 gr.). Livré sans leur cadre."));
 		}
-		
+
 	}
-	
-    @POST
-    public ProduitsDto createProduits(ProduitsDto p) {
-        Produits produit = new Produits();
-        produit.initFromDto(p);
-        int id = dao.insert(produit);
-        p.setId(id);
-        return p;
-    }
-	 
+
+	@POST
+	public ProduitsDto createProduits(ProduitsDto p) {
+		Produits produit = new Produits();
+		produit.initFromDto(p);
+		int id = dao.insert(produit);
+		p.setId(id);
+		return p;
+	}
+
 	@GET
 	@Path("/{id}")
 	public ProduitsDto getProduits(@QueryParam("id") int id) {
-		logger.debug("Search all Produits with query: " + id);
-		return dao.findById(id).convertToDto();
+		logger.debug("SearchProduits with query: " + id);
+		Produits p=dao.findById(id);
+		if(p==null) throw new WebApplicationException(404);
+		return p.convertToDto();
 	}
-	
+
 	@GET
-    @RolesAllowed({"admin"})
-    public List<ProduitsDto> getAllUsers(@QueryParam("q") String query) {
-        List<Produits> image=null;
-        if (query == null) {
-            image = dao.all();
-        } else {
-            logger.debug("Search users with query: " + query);
-            try {
-            	image = dao.all();
-            }catch(Exception e) {
-            	
-            }
-        }
-        return image.stream().map(Produits::convertToDto).collect(Collectors.toList());
-    }
+	@RolesAllowed({"admin"})
+	public List<ProduitsDto> getAllProduits() {
+		List<Produits> p=null;
+		p = dao.all();
+		logger.debug("Search produit");
+		return p.stream().map(Produits::convertToDto).collect(Collectors.toList());
+	}
 
 	@DELETE
 	@Path("/{id}")
