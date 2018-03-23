@@ -25,48 +25,69 @@ public class ProduitsResource {
 	private static ProduitsDao dao = getDbi().open(ProduitsDao.class);
 
 	public ProduitsResource() throws SQLException {
-		if (!tableExist("images")) {
-			logger.debug("Crate table images");
+		if (!tableExist("produits")) {
+			logger.debug("Crate table produits");
 			dao.createProduitsTable();
+			
+			//Ajout du premier produit présent sur le site
 			dao.insert(new Produits(0,"Affiche – Portrait unique – Nu",33.00,"http://ceuxquinouslient.com/wp-content/uploads/2018/03/papou-600x849.png","Des portrait d'antan pour petits et grands.\n" + 
 					"\n" + 
 					"Silhouettes fabriquées à partir de vos photos et imprimées en haute qualité sur des feuilles Canson A4 (320 gr.) ou A3 (210 gr.). Livré sans leur cadre."));
+			
+			//Ajout du second produit présent sur le site
+			dao.insert(new Produits(1, "Affiche – Portrait unique – Avec couronne", 38.00,"http://ceuxquinouslient.com/wp-content/uploads/2018/03/couronne-1-black-600x849.png", "Des portraits d'antan pour petits et grands.\n" +
+					"\n" +
+					"Silhouettes fabriquées à partir de vos photos et imprimées en haute qualité sur des feuilles Canson A4 (320 gr.) ou A3 (210 gr.). Livré sans leur cadre."));
+			
+			//Ajout du troisième produit présent sur le site
+			dao.insert(new Produits(2, "Bois – Portrait unique – Nu", 42.00, "http://ceuxquinouslient.com/wp-content/uploads/2018/03/DSC_0835-600x401.jpg", "Des portrait d'antan pour petits et grands.\n" +
+					"\n" +
+					"Silhouettes fabriquées à partir de vos photos, gravées sur du bois découpé. En partenariat avec la Petite Créative."));
+			
+			//Ajout du quatrième produit présent sur le site
+			dao.insert(new Produits(3, "Affiche – Portrait de groupe – Nu", 44.00, "http://ceuxquinouslient.com/wp-content/uploads/2018/03/Ceux-qui-nous-lient-soeurs-600x424.png", "Des portraits d'antan pour petits et grands.\n" +
+					"\n" +
+					"Silhouettes fabriquées à partir de vos photos et imprimées en haute qualité sur des feuilles Canson A4 (320gr.) pour 4 portraits max. ou A3 (210 gr.). Livré sans leur cadre. \n" + "Prix : 44 euros pour 2 profils (+11 euros par profil supplémentaire) \n"));
+			
+			//Ajout du cinquième produit présent sur le site
+			dao.insert(new Produits(4, "Affiche – Portrait de groupe – Avec couronne", 44.00, "http://ceuxquinouslient.com/wp-content/uploads/2018/03/famille-vander-600x424.png", "Des portraits d'antan pour petits et grands.\n" +
+					"\n" +
+					"Silhouettes fabriquées à partir de vos photos et imprimées en haute qualité sur des feuilles Canson A3 (210 gr.). Livré sans leur cadre. \n" + "Prix : 44 euros pour 2 profils (+11 euros par profil supplémentaire) \n"));
+			
+			//Ajout du sixième produit présent sur le site
+			dao.insert(new Produits(5, "Bois – Portrait unique – Avec couronne", 46.00, "http://ceuxquinouslient.com/wp-content/uploads/2018/03/DSC_0928-600x401.jpg", "Des portrait d'antan pour petits et grands.\n" +
+					"\n" +
+					"Silhouettes fabriquées à partir de vos photos gravé sur du bois découpé. En partenariat avec la Petite Créative."));
 		}
-		
+
 	}
-	
-    @POST
-    public ProduitsDto createProduits(ProduitsDto p) {
-        Produits produit = new Produits();
-        produit.initFromDto(p);
-        int id = dao.insert(produit);
-        p.setId(id);
-        return p;
-    }
-	 
+
+	@POST
+	public ProduitsDto createProduits(ProduitsDto p) {
+		Produits produit = new Produits();
+		produit.initFromDto(p);
+		int id = dao.insert(produit);
+		p.setId(id);
+		return p;
+	}
+
 	@GET
 	@Path("/{id}")
 	public ProduitsDto getProduits(@QueryParam("id") int id) {
-		logger.debug("Search all Produits with query: " + id);
-		return dao.findById(id).convertToDto();
+		logger.debug("SearchProduits with query: " + id);
+		Produits p=dao.findById(id);
+		if(p==null) throw new WebApplicationException(404);
+		return p.convertToDto();
 	}
-	
+
 	@GET
-    @RolesAllowed({"admin"})
-    public List<ProduitsDto> getAllUsers(@QueryParam("q") String query) {
-        List<Produits> image=null;
-        if (query == null) {
-            image = dao.all();
-        } else {
-            logger.debug("Search users with query: " + query);
-            try {
-            	image = dao.all();
-            }catch(Exception e) {
-            	
-            }
-        }
-        return image.stream().map(Produits::convertToDto).collect(Collectors.toList());
-    }
+	@RolesAllowed({"admin"})
+	public List<ProduitsDto> getAllProduits() {
+		List<Produits> p=null;
+		p = dao.all();
+		logger.debug("Search produit");
+		return p.stream().map(Produits::convertToDto).collect(Collectors.toList());
+	}
 
 	@DELETE
 	@Path("/{id}")
