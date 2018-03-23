@@ -1,5 +1,7 @@
 package fr.iutinfo.skeleton.api;
 
+import fr.iutinfo.skeleton.auth.AppSecurityContext;
+import fr.iutinfo.skeleton.auth.AuthFilter;
 import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +20,10 @@ public class LoginResource {
     @Path("/login")
     public UserDto secureWhoAmI(@Context SecurityContext context) {
         User user = (User) context.getUserPrincipal();
+        
         return user.convertToDto();
     }
-
+    
     @GET
     @Path("/profile")
     @RolesAllowed({"user"})
