@@ -40,7 +40,7 @@ public class UserResource {
     }
 
     @GET
-    @Path("/{name}")
+    @Path("/{login}")
     public UserDto getUser(@PathParam("login") String login) {
         User user = dao.findByLogin(login);
         if (user == null) {
