@@ -63,8 +63,8 @@ nav > ul li span:hover{
 }
 
 #boutique table tr div span img{
-	height: 50%;
-	width: 90%;
+	height: auto;
+   	width: 65%;
 	text-align: center;
 }
 
