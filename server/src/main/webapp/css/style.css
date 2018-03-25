@@ -22,7 +22,7 @@ nav > ul li{
 }
 
 nav > ul li span{
-	padding: 5px 15px;
+	padding: 5px 14px 5px 16px;
 	margin-bottom: 20px;
 	border-radius: 5px; 
 	transition: all 0.2s ease-out;
