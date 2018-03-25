@@ -25,7 +25,7 @@ nav > ul li span{
 	padding: 5px 15px;
 	margin-bottom: 20px;
 	border-radius: 5px; 
-	
+	transition: all 0.2s ease-out;
 	font-weight: 400;
 	font-style: normal;
 	letter-spacing: 3px;
@@ -56,6 +56,10 @@ nav > ul li span:hover{
 
 #boutique table tr:hover div div{
 	background: #edecec;
+}
+
+#boutique table tr div{
+	transition: all 0.2s ease-out;
 }
 
 #boutique table tr div span img{
