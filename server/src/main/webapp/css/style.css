@@ -47,6 +47,7 @@ nav > ul li span:hover{
 	border: 2px solid #E8E8E8;
 	padding: 1px;
 	margin: 5px 2.5%;
+	transition: all 0.2s ease-out;
 }
 
 #boutique table tr:hover{
@@ -56,10 +57,6 @@ nav > ul li span:hover{
 
 #boutique table tr:hover div div{
 	background: #edecec;
-}
-
-#boutique table tr div{
-	transition: all 0.2s ease-out;
 }
 
 #boutique table tr div span img{
@@ -81,8 +78,6 @@ nav > ul li span:hover{
 
 #boutique table tr div div h5{
 	color: #2f2f2f;
-	-webkit-transition: all 0.2s ease-out;
-	transition: all 0.2s ease-out;
 	margin: 0;
 	font-weight: bold;
 }
