@@ -73,7 +73,8 @@ public class ProduitsResource {
 
 	@GET
 	@Path("/{id}")
-	public ProduitsDto getProduits(@QueryParam("id") int id) {
+	public ProduitsDto getProduits(@PathParam("id") int id) {
+		System.out.println("id = " +id);
 		Produits p = dao.findById(id);
 		logger.debug("Search Produits with query: " + id);
 		if(p==null) {
