@@ -198,8 +198,6 @@ function afficheListProduit(data) {
 
 function pageCommande(id){
 	hideAll();
-	//console.log(id.children[0].value);
-	//commandeText(id.children[0].value);
 	commandeTextGeneric("v1/produit/"+id.children[0].value);
 }
 
@@ -213,9 +211,20 @@ function affichePageCommande(data){
 	$("#pageProduit").innerHTML="";
 	$("#pageProduit").show();
 	var table= document.createElement('table');
-	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2></td></tr>";
-	console.log(table.innerHTML);
-	//$("#pageProduit").innerHTML=table.innerHTML;
+	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2><h3>"+data.prix+" €</h3><h4>"+data.description+"</h4><h2>Personnalisez votre commande :</h2>"+
+	"<h4>Son prénom ?</h4><input type=text name=prenom id=prenom placeholder='Prénom ?' class=form-control/><h4>Sa photo</h4><h4>Dans quelle direction portera-t-il son regard ?</h4>"+
+	"<input type=radio id=contactChoice1 name=contact value=false><label for=contactChoice1>Regard à droite  </label>"+
+	"<input type=radio id=contactChoice1 name=contact value=true><label for=contactChoice1>Regard à gauche</label>"+
+	"<h4>Couleur du portrait</h4>"+
+	"<input type=radio id=couleur name=contact value=noir><label for=couleur>Noir</label>"+
+	"<h4>Quelle typographie souhaitez vous ?</h4>"+
+	"<input type=radio id=typo name=contact value=noir><label for=typo>1</label>"+
+	"<h4>Format du portrait</h4>"+
+	"<input type=radio id=contactChoice1 name=contact value=false><label for=contactChoice1>A4</label>"+
+	"<input type=radio id=contactChoice1 name=contact value=true><label for=contactChoice1>A3</label>"+
+	"<br><button>Envoyer</button>"+
+	"</td></tr>";
+
 	$("#pageProduit").html(table.innerHTML);
 }
 
