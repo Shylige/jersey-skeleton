@@ -1,3 +1,7 @@
+var rangUser = "";
+
+
+
 function getUser(name) {
 	getUserGeneric(name, "v1/user/");
 }
@@ -12,6 +16,15 @@ function login() {
 	getWithAuthorizationHeader("v1/login", function(data){
 	    $("#login_form").hide();
 	    afficheUser(data);
+	    if(data.nom === "admin"){
+	    	rangUser = "admin";
+	    	alert("Connecté en tant qu'administrateur");
+	    }else if(data.nom === "anonym"){
+	    	alert("login incorrect");
+	    }else{
+	    	rangUser = "user";
+	    	alert("Bienvenue " + data.prenom + " " + data.nom);
+	    }
 	});
 }
 
@@ -208,7 +221,7 @@ function afficheListProduitOld(data) {
 	for (index = 0; index < data.length; ++index) {
 	    var li = document.createElement('li');
 	    li.className = "list-group-item";
-		li.innerHTML = userStringify(data[index]);
+		li.innerHTML = produitsStringify(data[index]);
 		ul.appendChild(li);
 	}
 	$("#reponse").html(ul);
@@ -308,4 +321,8 @@ function postCommandeGeneric(idClient, idProduit, prenom, idImage, regard, coule
 			console.log('postProduits error: ' + textStatus);
 		}
 	});
+}
+
+function whatIsThatUser(){
+	return rangUser;
 }

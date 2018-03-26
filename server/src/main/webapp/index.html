@@ -32,6 +32,7 @@
         </li>
         <li><span id="afficheInscription">S'inscrire</span></li>
         <li><span id="afficheSeConnecter">Se connecter</span></li>
+        <li><span id="afficheProfil">Mon profil</span></li>
     </ul>
 </nav>
 
@@ -51,8 +52,8 @@
 
             <div id="divlog" class="form-group">
                 <h1>Se connecter</h1>
-                <input type="text" name="email" id="email" placeholder="Email ?" class="form-control"/>
-                <input type="password" name="user" id="passwd" placeholder="Mot de passe ?" class="form-control"/>
+                <input type="text" name="userlog" id="userlogin" placeholder="Login ?" class="form-control"/>
+                <input type="password" name="userpass" id="passwdlogin" placeholder="Mot de passe ?" class="form-control"/>
                 <button type="button" id="loginb" class="btn btn-primary">Se connecter</button>
             </div>
 
@@ -95,6 +96,9 @@
             </div>
 
              <div id="pageProduit"></div>
+
+             <div id = "pageUser"> <h1> BIENVENUE SUR VOTRE PAGE USER </h1> </div>
+             <div id = "acc"> <h1> Bienvenue sur ceux qui nous lient </h1></div>
 
     </div>
 </div>
@@ -152,6 +156,24 @@
                 hideAll();
                 $("#boutique").show();                
                 $("#commande").show();
+            });
+
+            $("#afficheProfil").click(function(){
+                profile();
+                if(whatIsThatUser() === "admin"){
+                    divlog.style.display = "none";
+                    document.getElementById("divinsc").style.display = "none";
+                    document.getElementById("btnmenu").style.display = "none";
+                    document.getElementById("prevImg").style.display = "block";
+                    document.getElementById("creaProduit").style.display = "block";
+                    document.getElementById("btnmenu2").style.display = "block";
+                    document.getElementById("btnmenu3").style.display = "block"; 
+                }else if(whatIsThatUser() === "user"){
+                    hideAll();
+                    document.getElementById("pageUser").style.display = "block";
+                }else{
+                    alert("Vous devez être connecté pour accéder à cette fonctionnalité");
+                }
             });
 
 
@@ -214,17 +236,8 @@
                 if(divlog.style.display==="none"){
                     document.getElementById("divinsc").style.display = "none";
                     divlog.style.display = "block";
-			    }else{
-                    
-                    login();
-                    divlog.style.display = "none";
-                    document.getElementById("divinsc").style.display = "none";
-                    document.getElementById("btnmenu").style.display = "none";
-                    document.getElementById("prevImg").style.display = "block";
-                    document.getElementById("creaProduit").style.display = "block";
-                    document.getElementById("btnmenu2").style.display = "block";
-                    document.getElementById("btnmenu3").style.display = "block";
-                    
+			    }else{           
+                    login();       
                     ;
                 }
             });
@@ -269,6 +282,12 @@
             $("#imgInp").change(function() {
               readURL(this);
             });
+
+            $("#test").click(function(){
+                hideAll();
+                document.getElementById("acc").style.display = "block";
+            });
+            
     </script>
 </body>
 </html>
