@@ -23,8 +23,8 @@ public class CommandeResource {
 	private static CommandeDao dao = getDbi().open(CommandeDao.class);
 
 	public CommandeResource() throws SQLException {
-		if (!tableExist("produits")) {
-			logger.debug("Create table commande");
+		if (!tableExist("commandes")) {
+			logger.debug("Create table commandes");
 			dao.createCommandeTable();
 			dao.insert(new Commande(1,1,1,"test",1,true,"bleu","primtemps",false));
 		}
