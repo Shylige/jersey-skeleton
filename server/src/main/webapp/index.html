@@ -83,10 +83,13 @@
                 <div id= "resrequete"></div>
                 <button type="button" id="listusers" class="btn btn-warning">Afficher liste des utilisateurs</button>
                 <div id= "resrequete"></div>
+                <button type="button" id="listcommandes" class="btn btn-warning">Afficher liste des commandes</button>
             </div>
 
             <div id="boutique" class="row">
-                
+                <div id ="commande"> 
+                    <button type="button" id="commandebtn" class="btn btn-warning">Commander</button>
+                </div>       
             </div>
     </div>
 </div>
@@ -121,6 +124,7 @@
             produits();
             hideAll();
             $("#boutique").show();
+            $("#commande").show();
 
             //AFFICHAGES
 
@@ -141,7 +145,8 @@
 
             $("#afficheBoutique").click(function () {
                 hideAll();
-                $("#boutique").show();
+                $("#boutique").show();                
+                $("#commande").show();
             });
 
 
@@ -206,14 +211,19 @@
 			    profile()
 			    });
 		     });
-/*
+
+
+            $("#listcommandes").click(function(){
+                listCommande();
+            });
+
             $("#listproduits").click(function(){
                 document.getElementById("divinsc").style.display = "none";
                 document.getElementById("btnmenu").style.display = "none";
-                produits();
+                produitsText();
 
             });
-*/
+
             $("#listusers").click(function(){
                 document.getElementById("divinsc").style.display = "none";
                 document.getElementById("btnmenu").style.display = "none";
@@ -231,6 +241,7 @@
                 reader.readAsDataURL(input.files[0]);
               }
             }
+
 
             $("#imgInp").change(function() {
               readURL(this);

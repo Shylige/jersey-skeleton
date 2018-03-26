@@ -71,6 +71,32 @@ function postUserGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 	});
 }
 
+function postCommandeGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
+	console.log("postUserGeneric " + url)
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"nom" : nom,
+			"login" : login,
+			"email" : email,
+			"password" : pwd,
+			"id" : 0,
+			"adresse" : adresse,
+			"prenom" : prenom,
+			"tel" : tel 
+		}),
+		success : function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log('postUser error: ' + textStatus);
+		}
+	});
+}
+
 function listUsers() {
     listUsersGeneric("v1/user/");
 }
@@ -166,6 +192,30 @@ function afficheListProduit(data) {
 	$("#boutique").html(table);
 }
 
+
+function produitsText(){
+    produitsTextGeneric("v1/produit");
+}
+
+function produitsTextGeneric(url) {
+	$.getJSON(url, function(data) {
+		afficheListProduitOld(data)
+	});
+}
+
+function afficheListProduitOld(data) {
+		var ul = document.createElement('ul');
+	ul.className = "list-group";
+	var index = 0;
+	for (index = 0; index < data.length; ++index) {
+	    var li = document.createElement('li');
+	    li.className = "list-group-item";
+		li.innerHTML = userStringify(data[index]);
+		ul.appendChild(li);
+	}
+	$("#reponse").html(ul);
+}
+
 function produitsStringify(produits) {
     return produits.id + " / " + produits.nom + " / " + produits.description + " / " +produits.prix + "€";
 }
@@ -200,4 +250,27 @@ function postProduitsGeneric(nom, description, prix, url) {
 			console.log('postProduits error: ' + textStatus);
 		}
 	});
+}
+
+function listCommande() {
+    listCommandeGeneric("v1/commande");
+}
+
+function listCommandeGeneric(url) {
+	$.getJSON(url, function(data) {
+		afficheListCommande(data)
+	});
+}
+
+function afficheListCommande(data) {
+	var ul = document.createElement('ul');
+	ul.className = "list-group";
+	var index = 0;
+	for (index = 0; index < data.length; ++index) {
+	    var li = document.createElement('li');
+	    li.className = "list-group-item";
+		li.innerHTML = userStringify(data[index]);
+		ul.appendChild(li);
+	}
+	$("#reponse").html(ul);
 }
