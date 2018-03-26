@@ -85,3 +85,18 @@ nav > ul li span:hover{
 #boutique table tr:hover div div h5{
 	color: #bf9456;
 }
+
+#pageProduit  {
+	background-color: white;
+	margin-top: 30px;
+}
+
+#pageProduit tr{
+
+	text-align: center;
+}
+
+#pageProduit tr td{
+	text-align: left;
+	padding: 20px;
+}
