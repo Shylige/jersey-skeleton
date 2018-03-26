@@ -1,9 +1,6 @@
 var rangUser = "";
 
-function hideAll(){
-    var root=$('#root');
-    root.children().hide();
-}
+
 
 function getUser(name) {
 	getUserGeneric(name, "v1/user/");
@@ -187,47 +184,23 @@ function afficheListProduit(data) {
 	for (index = 0; index < data.length; ++index) {
 	    var tr=document.createElement('tr');
 	    var divMain = document.createElement('div');
-	    var input=document.createElement('input');
-	    input.value=data[index].id;
-	    input.type="hidden";
-	       
-	    divMain.onclick = function(event){pageCommande(event.currentTarget);}
+
+	    divMain.onclick = function(id){alert('ID : '+id);};
+
 	    divMain.className="col";
-	   
+	    //var spanId=document.createElement('span');
+	    //spanId.innerHTML=""+data[index].id;
 	    var divInfo = document.createElement('div');
 	    var spanImage= document.createElement('span');
 	    spanImage.innerHTML="<img src="+data[index].image+"></img>";
 	    divInfo.innerHTML="<h5>"+data[index].nom + "</h5><h4>" +data[index].prix+" €</h4>";
-	    divMain.appendChild(input);
+	    //divMain.appendChild(spanId);
 		divMain.appendChild(spanImage);
 		divMain.appendChild(divInfo);
 		tr.appendChild(divMain);
 		table.appendChild(tr);
 	}
 	$("#boutique").html(table);
-}
-
-function pageCommande(id){
-	hideAll();
-	//console.log(id.children[0].value);
-	//commandeText(id.children[0].value);
-	commandeTextGeneric("v1/produit/"+id.children[0].value);
-}
-
-function commandeTextGeneric(url) {
-	$.getJSON(url, function(data) {
-		affichePageCommande(data);
-	});
-}
-
-function affichePageCommande(data){
-	$("#pageProduit").innerHTML="";
-	$("#pageProduit").show();
-	var table= document.createElement('table');
-	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2></td></tr>";
-	console.log(table.innerHTML);
-	//$("#pageProduit").innerHTML=table.innerHTML;
-	$("#pageProduit").html(table.innerHTML);
 }
 
 
@@ -237,7 +210,6 @@ function produitsText(){
 
 function produitsTextGeneric(url) {
 	$.getJSON(url, function(data) {
-		
 		afficheListProduitOld(data)
 	});
 }
