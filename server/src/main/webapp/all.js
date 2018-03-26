@@ -70,8 +70,9 @@ function postUserGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 		}
 	});
 }
+/*
 
-function postCommandeGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
+function postcGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 	console.log("postUserGeneric " + url)
 	$.ajax({
 		type : 'POST',
@@ -95,7 +96,7 @@ function postCommandeGeneric(nom,login,email,pwd,adresse,prenom,tel, url) {
 			console.log('postUser error: ' + textStatus);
 		}
 	});
-}
+}*/
 
 function listUsers() {
     listUsersGeneric("v1/user/");
@@ -221,7 +222,7 @@ function produitsStringify(produits) {
 }
 
 function postProduits(nom, description, prix) {
-    postProduitsGeneric(nom, description,prix , 'v1/produit/');
+    postProduitsGeneric(nom, description, prix , 'v1/produit');
 }
 
 function afficherProduits(data) {
@@ -269,8 +270,45 @@ function afficheListCommande(data) {
 	for (index = 0; index < data.length; ++index) {
 	    var li = document.createElement('li');
 	    li.className = "list-group-item";
-		li.innerHTML = userStringify(data[index]);
+		li.innerHTML = commandeStringify(data[index]);
 		ul.appendChild(li);
 	}
 	$("#reponse").html(ul);
+}
+
+function commandeStringify(commande) {
+    return "ID :" +commande.id + " | ID Client : " + commande.idClient + " | ID Produit : " + commande.idProduit + " | Prenom : " + commande.prenom + " | ID Image : " + commande.idImage + " | Regard : " + commande.regard + " | Couleur : " + commande.couleur + " | Typo : " + commande.typo + " | Format : " + commande.format;
+}
+
+
+
+function postCommande(idClient, idProduit, prenom, idImage, regard, couleur, typo, format) {
+    postCommandeGeneric(idClient, idProduit, prenom, idImage, regard, couleur, typo, format , 'v1/commande');
+}
+
+function postCommandeGeneric(idClient, idProduit, prenom, idImage, regard, couleur, typo, format, url) {
+	console.log("postProduitsGeneric " + url)
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"id":0,
+			"idClient":idClient,
+			"idProduit":idProduit,
+			"prenom":prenom,
+			"idImage":idImage,
+			"regard": regard,
+			"couleur": couleur,
+			"typo": typo,
+			"format":format
+		}),
+		success : function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log('postProduits error: ' + textStatus);
+		}
+	});
 }

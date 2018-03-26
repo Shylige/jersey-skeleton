@@ -84,6 +84,8 @@
                 <button type="button" id="listusers" class="btn btn-warning">Afficher liste des utilisateurs</button>
                 <div id= "resrequete"></div>
                 <button type="button" id="listcommandes" class="btn btn-warning">Afficher liste des commandes</button>
+                <div id= "resrequete"></div>
+                <button type="button" id="comtest" class="btn btn-warning">Test de passage de commande par défaut</button>
             </div>
 
             <div id="boutique" class="row">
@@ -172,6 +174,24 @@
                         $('#tel').val())
                         
                 }
+            });
+
+           $("#comtest").click(function() {
+                var t = "testDemo";
+                var typo = "printempsTest";
+                var couleur = "rouge";
+                var bool1 = true;
+                var bool2 = false;
+                var idun = 1;
+               postCommande(
+                    idun, 
+                    idun,
+                    t, 
+                    idun,
+                    bool2,
+                    couleur,
+                    typo,
+                    bool1)
             });
 
             $("#creerProduit").click(function(){
