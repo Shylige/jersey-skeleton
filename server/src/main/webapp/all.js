@@ -1,3 +1,8 @@
+function hideAll(){
+    var root=$('#root');
+    root.children().hide();
+}
+
 function getUser(name) {
 	getUserGeneric(name, "v1/user/");
 }
@@ -171,17 +176,18 @@ function afficheListProduit(data) {
 	for (index = 0; index < data.length; ++index) {
 	    var tr=document.createElement('tr');
 	    var divMain = document.createElement('div');
-
-	    divMain.onclick = function(id){alert('ID : '+id);};
-
+	    var input=document.createElement('input');
+	    input.value=data[index].id;
+	    input.type="hidden";
+	       
+	    divMain.onclick = function(event){affichePageCommande(event.currentTarget);}
 	    divMain.className="col";
-	    //var spanId=document.createElement('span');
-	    //spanId.innerHTML=""+data[index].id;
+	   
 	    var divInfo = document.createElement('div');
 	    var spanImage= document.createElement('span');
 	    spanImage.innerHTML="<img src="+data[index].image+"></img>";
 	    divInfo.innerHTML="<h5>"+data[index].nom + "</h5><h4>" +data[index].prix+" €</h4>";
-	    //divMain.appendChild(spanId);
+	    divMain.appendChild(input);
 		divMain.appendChild(spanImage);
 		divMain.appendChild(divInfo);
 		tr.appendChild(divMain);
@@ -190,6 +196,23 @@ function afficheListProduit(data) {
 	$("#boutique").html(table);
 }
 
+function affichePageCommande(id){
+	hideAll();
+	console.log(id.children[0].value);
+	$("#pageProduit").innerHTML="";
+	$("#pageProduit").show();
+	commandeText(id.children[0].value);
+}
+
+function commandeText(id){
+    produitsTextGeneric("v1/produit/"+id);
+}
+
+function produitsTextGeneric(url) {
+	$.getJSON(url, function(data) {
+		afficheListProduitOld(data)
+	});
+}
 
 function produitsText(){
     produitsTextGeneric("v1/produit");
