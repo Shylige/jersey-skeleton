@@ -180,7 +180,7 @@ function afficheListProduit(data) {
 	    input.value=data[index].id;
 	    input.type="hidden";
 	       
-	    divMain.onclick = function(event){affichePageCommande(event.currentTarget);}
+	    divMain.onclick = function(event){pageCommande(event.currentTarget);}
 	    divMain.className="col";
 	   
 	    var divInfo = document.createElement('div');
@@ -196,23 +196,29 @@ function afficheListProduit(data) {
 	$("#boutique").html(table);
 }
 
-function affichePageCommande(id){
+function pageCommande(id){
 	hideAll();
-	console.log(id.children[0].value);
-	$("#pageProduit").innerHTML="";
-	$("#pageProduit").show();
-	commandeText(id.children[0].value);
+	//console.log(id.children[0].value);
+	//commandeText(id.children[0].value);
+	commandeTextGeneric("v1/produit/"+id.children[0].value);
 }
 
-function commandeText(id){
-    produitsTextGeneric("v1/produit/"+id);
-}
-
-function produitsTextGeneric(url) {
+function commandeTextGeneric(url) {
 	$.getJSON(url, function(data) {
-		afficheListProduitOld(data)
+		affichePageCommande(data);
 	});
 }
+
+function affichePageCommande(data){
+	$("#pageProduit").innerHTML="";
+	$("#pageProduit").show();
+	var table= document.createElement('table');
+	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2></td></tr>";
+	console.log(table.innerHTML);
+	//$("#pageProduit").innerHTML=table.innerHTML;
+	$("#pageProduit").html(table.innerHTML);
+}
+
 
 function produitsText(){
     produitsTextGeneric("v1/produit");
@@ -220,6 +226,7 @@ function produitsText(){
 
 function produitsTextGeneric(url) {
 	$.getJSON(url, function(data) {
+		
 		afficheListProduitOld(data)
 	});
 }
