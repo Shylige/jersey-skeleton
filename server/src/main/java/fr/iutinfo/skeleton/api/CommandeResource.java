@@ -4,9 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.iutinfo.skeleton.common.dto.CommandeDto;
-import fr.iutinfo.skeleton.common.dto.ImageDto;
-import fr.iutinfo.skeleton.common.dto.ProduitsDto;
-import fr.iutinfo.skeleton.common.dto.UserDto;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -18,7 +15,7 @@ import java.util.stream.Collectors;
 import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
 import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
 
-@Path("/produit")
+@Path("/commande")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CommandeResource {
