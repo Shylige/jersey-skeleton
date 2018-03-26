@@ -166,30 +166,27 @@ function listProduitsGeneric(url) {
 }
 
 function afficheListProduit(data) {
-	//var ul = document.createElement('ul');
-	//ul.className = "columns-2";
 	var table= document.createElement('table');
 	var index = 0;
 	for (index = 0; index < data.length; ++index) {
-	    //var li = document.createElement('li');
 	    var tr=document.createElement('tr');
 	    var divMain = document.createElement('div');
+
+	    divMain.onclick = function(id){alert('ID : '+id);};
+
 	    divMain.className="col";
+	    //var spanId=document.createElement('span');
+	    //spanId.innerHTML=""+data[index].id;
 	    var divInfo = document.createElement('div');
 	    var spanImage= document.createElement('span');
-	    //li.className = "list-group-item";
 	    spanImage.innerHTML="<img src="+data[index].image+"></img>";
 	    divInfo.innerHTML="<h5>"+data[index].nom + "</h5><h4>" +data[index].prix+" €</h4>";
-		//li.innerHTML = produitsStringify(data[index]);
-		//console.log(produitsStringify(data[index]));
+	    //divMain.appendChild(spanId);
 		divMain.appendChild(spanImage);
 		divMain.appendChild(divInfo);
 		tr.appendChild(divMain);
 		table.appendChild(tr);
-		//li.appendChild(divMain);
-		//ul.appendChild(li);
 	}
-	//$("#boutique").html(ul);
 	$("#boutique").html(table);
 }
 
