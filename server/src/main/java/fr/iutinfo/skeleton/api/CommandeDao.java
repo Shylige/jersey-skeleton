@@ -27,7 +27,7 @@ public interface CommandeDao {
 	
 	@SqlQuery("select * from commandes where idClient = :idClient")
 	@RegisterMapperFactory(BeanMapperFactory.class)
-	List<Commande> getAllImage(@Bind("idClient") int idClient);
+	List<Commande> findByidClient(@Bind("idClient") int idClient);
 
 	@SqlUpdate("insert into commandes (idClient,idProduit,prenom,idImage,regard,couleur,typo,format) values (:idClient,:idProduit,:prenom,:idImage,:regard,:couleur,:typo,:format)")
 	@GetGeneratedKeys

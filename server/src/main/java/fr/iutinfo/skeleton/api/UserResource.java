@@ -25,8 +25,11 @@ public class UserResource {
         if (!tableExist("users")) {
             logger.debug("Crate table users");
             dao.createUserTable();
+            User admin = new User(1, "admin", "admin", "admin", "admin", "admin", "admin");
+            admin.setPassword("admin");
             dao.insert(new User(0, "Margaret Thatcher", "la Dame de fer", "test", "LOL", "pp", "AHHHH"));
-            dao.insert(new User(1, "admin", "admin", "admin", "admin", "admin", "admin"));
+            dao.insert(admin);
+            
         }
     }
 

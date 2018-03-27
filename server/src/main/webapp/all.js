@@ -380,6 +380,6 @@ function whatIsUserId(){
 }
 
 function getCommandeById(){
-	listCommandeGeneric("v1/commande/"+whatIsUserId());
+	listCommandeGeneric("v1/commande/user/"+whatIsUserId());
 }
 

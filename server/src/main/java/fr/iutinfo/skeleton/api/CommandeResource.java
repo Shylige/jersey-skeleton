@@ -50,6 +50,15 @@ public class CommandeResource {
 		}
 		return c.convertToDto();
 	}
+	
+	@GET
+	@Path("/user/{idClient}")
+	public List<CommandeDto> getCommandeByUserId(@PathParam("idClient") int idClient) {
+		List<Commande> c=null;
+		c = dao.findByidClient(idClient);
+		logger.debug("Search Produits with query: " + idClient);
+		return c.stream().map(Commande::convertToDto).collect(Collectors.toList());
+	}
 
 	@GET
 	@RolesAllowed({"admin"})
