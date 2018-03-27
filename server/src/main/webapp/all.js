@@ -244,13 +244,23 @@ function affichePageCommande(data){
 	"<input type=radio id=regard name=regard value=false required><label for=regard>Regard à droite  </label>"+
 	"<input type=radio id=regard1 name=regard value=true required><label for=regard1>Regard à gauche</label>"+
 	"<h4>Couleur du portrait</h4>"+
-	"<input type=radio id=couleur name=couleur value=noir required><label for=couleur>Noir</label>"+
+	"<input type=radio id=couleur name=couleur value=noir required><label for=couleur><img src='images/noir.jpg'/></img> Noir </label>"+
+	"<input type=radio id=couleur1 name=couleur value='bleu mer' required><label for=couleur1><img src='images/bleu-mer.jpg'/></img> Bleu mer </label>"+
+	"<input type=radio id=couleur2 name=couleur value='bleu pétrole' required><label for=couleur2><img src='images/bleu-petrole.jpg'/></img> Bleu pétrole </label><br>"+
+	"<input type=radio id=couleur3 name=couleur value='miel' required><label for=couleur3><img src='images/miel.jpg'/></img> Miel</label>"+
+	"<input type=radio id=couleur4 name=couleur value=rose required><label for=couleur4><img src='images/rose.jpg'/></img> Rose</label>"+
+	"<input type=radio id=couleur5 name=couleur value=rouille required><label for=couleur5><img src='images/rouille.jpg'/></img> Rouille</label><br>"+
+	"<input type=radio id=couleur6 name=couleur value=taupe required><label for=couleur6><img src='images/taupe.jpg'/></img> Taupe</label>"+
+	"<input type=radio id=couleur7 name=couleur value='vert clair' required><label for=couleur7><img src='images/vert-clair.jpg'/></img> Vert clair</label>"+
+	"<input type=radio id=couleur8 name=couleur value='vert sapin' required><label for=couleur8><img src='images/vert-sapin.jpg'/></img> Vert sapin</label>"+
 	"<h4>Quelle typographie souhaitez vous ?</h4>"+
-	"<input type=radio id=typo name=typo value=printemps1 required><label for=typo>1</label>"+
+	"<input type=radio id=typo name=typo value=printemps1 required><label for=typo><img class=typo src='images/typo1.jpg' ></img></label>"+
+	"<input type=radio id=typo1 name=typo value=printemps2 required><label for=typo><img class=typo src='images/typo2.jpg' ></img></label>"+
+	"<input type=radio id=typo2 name=typo value=printemps3 required><label for=typo><img class=typo src='images/typo3.jpg' ></img></label>"+
 	"<h4>Format du portrait</h4>"+
 	"<input type=radio id=portrait name=portrait value=false required><label for=portrait>A4</label>"+
 	"<input type=radio id=portrait1 name=portrait value=true required><label for=portrait1>A3</label>"+
-	"<br><button id=commander onclick=commander()>Envoyer</button>"+
+	"<br><br><button id=commander class='btn btn-primary' onclick=commander()>Commander</button>"+
 	"</td></tr>";
 
 	$("#pageProduit").html(table.innerHTML);
