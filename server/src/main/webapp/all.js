@@ -1,4 +1,5 @@
 var rangUser = "";
+var id = 0;
 
 function hideAll(){
     var root=$('#root');
@@ -21,11 +22,13 @@ function login() {
 	    afficheUser(data);
 	    if(data.nom === "admin"){
 	    	rangUser = "admin";
+	    	id = data.id;
 	    	alert("Connecté en tant qu'administrateur");
 	    }else if(data.nom === "anonym"){
 	    	alert("login incorrect");
 	    }else{
 	    	rangUser = "user";
+	    	id = data.id;
 	    	alert("Bienvenue " + data.prenom + " " + data.nom);
 	    }
 	});
@@ -363,3 +366,12 @@ function postCommandeGeneric(idClient, idProduit, prenom, idImage, regard, coule
 function whatIsThatUser(){
 	return rangUser;
 }
+
+function whatIsUserId(){
+	return id;
+}
+
+function getCommandeById(){
+	listCommandeGeneric("v1/commande/"+whatIsUserId());
+}
+

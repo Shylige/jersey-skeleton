@@ -166,8 +166,10 @@
                 }else if(whatIsThatUser() === "user"){
                     hideAll();
                     document.getElementById("pageUser").style.display = "block";
-                }else{
-                    alert("Vous devez être connecté pour accéder à cette fonctionnalité");
+                    getCommandeById();
+
+                    }else{
+                        alert("Vous devez être connecté pour accéder à cette fonctionnalité");
                 }
             });
 
@@ -192,6 +194,7 @@
                         $('#adresse').val(),
                         $('#prenom').val(),            
                         $('#tel').val())
+                    alert("Vous êtes inscrit");
                         
                 }
             });
@@ -202,7 +205,7 @@
                 var couleur = "rouge";
                 var bool1 = true;
                 var bool2 = false;
-                var idun = 1;
+                var idun = 7;
                postCommande(
                     idun, 
                     idun,
