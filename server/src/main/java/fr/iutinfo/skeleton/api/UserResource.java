@@ -32,6 +32,16 @@ public class UserResource {
 
     @POST
     public UserDto createUser(UserDto dto) {
+    	List<UserDto> users=getAllUsers(null);
+    	boolean ok=true;
+    	for(UserDto u:users) {
+    		if(u.getLogin().equals(dto.getLogin())) {
+    			ok=false;
+    		}
+    	}
+    	
+    	if(!ok)return null;
+    	
         User user = new User();
         user.initFromDto(dto);
         user.resetPasswordHash();

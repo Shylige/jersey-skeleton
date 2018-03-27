@@ -24,12 +24,20 @@ function login() {
 	    	rangUser = "admin";
 	    	id = data.id;
 	    	alert("Connecté en tant qu'administrateur");
+	    	$("#afficheProfil").show();
+	    	$("#deconnection").show();
+	    	$("#afficheSeConnecter").hide();
+	    	$("#afficheInscription").hide();
 	    }else if(data.nom === "anonym"){
 	    	alert("login incorrect");
 	    }else{
 	    	rangUser = "user";
 	    	id = data.id;
 	    	alert("Bienvenue " + data.prenom + " " + data.nom);
+	    	$("#afficheProfil").show();
+	    	$("#deconnection").show();
+	    	$("#afficheSeConnecter").hide();
+	    	$("#afficheInscription").hide();
 	    }
 	});
 }
@@ -227,15 +235,15 @@ function affichePageCommande(data){
 	var table= document.createElement('table');
 	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2><h3>"+data.prix+" €</h3><h4>"+data.description+"</h4><h2>Personnalisez votre commande :</h2>"+
 	"<h4>Son prénom ?</h4><input type=text name=prenom id=prenom placeholder='Prénom ?' class=form-control/><h4>Sa photo</h4><h4>Dans quelle direction portera-t-il son regard ?</h4>"+
-	"<input type=radio id=contactChoice1 name=contact value=false><label for=contactChoice1>Regard à droite  </label>"+
-	"<input type=radio id=contactChoice1 name=contact value=true><label for=contactChoice1>Regard à gauche</label>"+
+	"<input type=radio id=regard name=regard value=false><label for=regard>Regard à droite  </label>"+
+	"<input type=radio id=regard1 name=regard value=true><label for=regard1>Regard à gauche</label>"+
 	"<h4>Couleur du portrait</h4>"+
-	"<input type=radio id=couleur name=contact value=noir><label for=couleur>Noir</label>"+
+	"<input type=radio id=couleur name=couleur value=noir><label for=couleur>Noir</label>"+
 	"<h4>Quelle typographie souhaitez vous ?</h4>"+
-	"<input type=radio id=typo name=contact value=noir><label for=typo>1</label>"+
+	"<input type=radio id=typo name=typo value=noir><label for=typo>1</label>"+
 	"<h4>Format du portrait</h4>"+
-	"<input type=radio id=contactChoice1 name=contact value=false><label for=contactChoice1>A4</label>"+
-	"<input type=radio id=contactChoice1 name=contact value=true><label for=contactChoice1>A3</label>"+
+	"<input type=radio id=portrait name=portrait value=false><label for=portrait>A4</label>"+
+	"<input type=radio id=portrait1 name=portrait value=true><label for=portrait1>A3</label>"+
 	"<br><button>Envoyer</button>"+
 	"</td></tr>";
 
