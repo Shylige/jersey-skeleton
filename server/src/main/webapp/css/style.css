@@ -100,3 +100,32 @@ nav > ul li span:hover{
 	text-align: left;
 	padding: 20px;
 }
+
+#pageProduit  {
+	background-color: white;
+	margin-top: 30px;
+}
+
+#pageProduit tr{
+
+	text-align: center;
+}
+
+#pageProduit tr td{
+	text-align: left;
+	padding: 20px;
+}
+
+
+#pageProduit tr td label img{
+	width: 8%;
+	margin: 5px;
+}
+
+#pageProduit tr td label{
+	display: initial;
+}
+
+.typo{
+	width: 50%;
+}
