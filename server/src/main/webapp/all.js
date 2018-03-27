@@ -1,6 +1,12 @@
 var rangUser = "";
 var id = 0;
 
+
+function resetUserCourant(){
+	rangUser = "";
+	id = 0;
+}
+
 function hideAll(){
     var root=$('#root');
     root.children().hide();
@@ -25,7 +31,7 @@ function login() {
 	    	id = data.id;
 	    	alert("Connecté en tant qu'administrateur");
 	    	$("#afficheProfil").show();
-	    	$("#deconnection").show();
+	    	$("#deconnexion").show();
 	    	$("#afficheSeConnecter").hide();
 	    	$("#afficheInscription").hide();
 	    }else if(data.nom === "anonym"){
@@ -35,7 +41,7 @@ function login() {
 	    	id = data.id;
 	    	alert("Bienvenue " + data.prenom + " " + data.nom);
 	    	$("#afficheProfil").show();
-	    	$("#deconnection").show();
+	    	$("#deconnexion").show();
 	    	$("#afficheSeConnecter").hide();
 	    	$("#afficheInscription").hide();
 	    }
@@ -233,22 +239,63 @@ function affichePageCommande(data){
 	$("#pageProduit").innerHTML="";
 	$("#pageProduit").show();
 	var table= document.createElement('table');
-	table.innerHTML="<tr><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2><h3>"+data.prix+" €</h3><h4>"+data.description+"</h4><h2>Personnalisez votre commande :</h2>"+
-	"<h4>Son prénom ?</h4><input type=text name=prenom id=prenom placeholder='Prénom ?' class=form-control/><h4>Sa photo</h4><h4>Dans quelle direction portera-t-il son regard ?</h4>"+
-	"<input type=radio id=regard name=regard value=false><label for=regard>Regard à droite  </label>"+
-	"<input type=radio id=regard1 name=regard value=true><label for=regard1>Regard à gauche</label>"+
+	table.innerHTML="<tr><input type=hidden id=id value="+data.id+ " /><td><img src="+data.image+"></img></td><td><h2>"+data.nom+"</h2><h3>"+data.prix+" €</h3><h4>"+data.description+"</h4><h2>Personnalisez votre commande :</h2>"+
+	"<h4>Son prénom ?</h4><input type=text name=prenom id=prenom placeholder='Prénom ?' class=form-control required /><h4>Sa photo</h4><h4>Dans quelle direction portera-t-il son regard ?</h4>"+
+	"<input type=radio id=regard name=regard value=false required><label for=regard>Regard à droite  </label>"+
+	"<input type=radio id=regard1 name=regard value=true required><label for=regard1>Regard à gauche</label>"+
 	"<h4>Couleur du portrait</h4>"+
-	"<input type=radio id=couleur name=couleur value=noir><label for=couleur>Noir</label>"+
+	"<input type=radio id=couleur name=couleur value=noir required><label for=couleur>Noir</label>"+
 	"<h4>Quelle typographie souhaitez vous ?</h4>"+
-	"<input type=radio id=typo name=typo value=noir><label for=typo>1</label>"+
+	"<input type=radio id=typo name=typo value=printemps1 required><label for=typo>1</label>"+
 	"<h4>Format du portrait</h4>"+
-	"<input type=radio id=portrait name=portrait value=false><label for=portrait>A4</label>"+
-	"<input type=radio id=portrait1 name=portrait value=true><label for=portrait1>A3</label>"+
-	"<br><button>Envoyer</button>"+
+	"<input type=radio id=portrait name=portrait value=false required><label for=portrait>A4</label>"+
+	"<input type=radio id=portrait1 name=portrait value=true required><label for=portrait1>A3</label>"+
+	"<br><button id=commander onclick=commander()>Envoyer</button>"+
 	"</td></tr>";
 
 	$("#pageProduit").html(table.innerHTML);
 }
+
+function commander() {
+	if(whatIsThatUser()!=""){
+	    console.log("test");
+	    var radios = document.getElementsByName('regard');
+	    var regard;
+	    var typo;
+	    var couleur;
+	    var portrait;
+	    
+	    for (var j = 0; j < radios.length; j++) {
+	        if(radios[j].checked)regard = radios[j].value;
+	    }
+	    radios = document.getElementsByName('typo');
+	    for (var j = 0; j < radios.length; j++) {
+	        if(radios[j].checked)typo = radios[j].value;
+	    }
+	    radios = document.getElementsByName('couleur');
+	    for (var j = 0; j < radios.length; j++) {
+	        if(radios[j].checked)couleur = radios[j].value;
+	    }
+	    radios = document.getElementsByName('portrait');
+	    for (var j = 0; j < radios.length; j++) {
+	        if(radios[j].checked)portrait = radios[j].value;
+	    }
+	    
+	   postCommande(
+	        whatIsUserId(),
+	        $('#id').val(),
+	        $('#prenom').val(),
+	        0,
+	        regard,
+	        couleur,
+	        typo,
+	        portrait);
+	    alert("Commande effectuée !");  
+	}else{
+		alert("Vous devez être connecter pour effectuer une commande");
+	}
+}
+
 
 
 function produitsText(){

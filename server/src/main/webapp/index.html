@@ -33,7 +33,7 @@
         <li><span id="afficheInscription">S'inscrire</span></li>
         <li><span id="afficheSeConnecter">Se connecter</span></li>
         <li><span id="afficheProfil">Mon profil</span></li>
-        <li><span id="deconnection">Déconnection</span></li>
+        <li><span id="deconnexion">Déconnexion</span></li>
     </ul>
 </nav>
 
@@ -93,9 +93,7 @@
             </div>
 
             <div id="boutique" class="row">
-                <div id ="commande"> 
-                    <button type="button" id="commandebtn" class="btn btn-warning">Commander</button>
-                </div>       
+                    
             </div>
 
              <div id="pageProduit"></div>
@@ -138,7 +136,7 @@
             $("#boutique").show();
             $("#commande").show();
             $("#afficheProfil").hide();
-            $("#deconnection").hide();
+            $("#deconnexion").hide();
 
             //AFFICHAGES      
 
@@ -180,6 +178,15 @@
 
 
             //AUTRES
+
+            $("#deconnexion").click(function () {
+                $("#afficheProfil").hide();
+                $("#deconnexion").hide();
+                $("#afficheSeConnecter").show();
+                $("#afficheInscription").show();
+                resetUserCourant();
+            });
+            
 
 			$("#get").click(function () {
 			    getUser($('#user').val(), $('#alias').val())
